@@ -12,7 +12,7 @@ const Button = ({
   state: TokenState
   setAmount: Dispatch<SetStateAction<number | undefined>>
 }) => {
-  const { isConnected } = useAccount()
+  const { isConnecting, isConnected } = useAccount()
   const { openConnectModal } = useConnectModal()
   const config = useConfig()
   const { addToast } = useToast()
@@ -32,12 +32,12 @@ const Button = ({
 
   return (
     <section className={buttonWrapper}>
-      {!isConnected && (
+      {!isConnecting && !isConnected && (
         <button className={button} onClick={openConnectModal} disabled={Boolean(state?.error)}>
           {'CONNECT'}
         </button>
       )}
-      {isConnected && (
+      {(isConnecting || isConnected) && (
         <button
           className={button}
           disabled={!state.amount || Boolean(state?.error)}

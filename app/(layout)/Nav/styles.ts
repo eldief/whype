@@ -41,13 +41,10 @@ export const nav = css({
   position: 'sticky',
   top: 0,
   zIndex: 10,
-
   width: '100%',
   height: '64px',
-
   display: 'flex',
   alignItems: 'center',
-
   padding: {
     base: '0.5rem 0.75rem',
     tablet: '1rem 2rem',

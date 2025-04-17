@@ -9,6 +9,7 @@ import Footer from './(layout)/Footer'
 import { serif } from './fonts'
 import Toaster from './(layout)/Toaster'
 import { ToastProvider } from './(layout)/Toaster/context/ToastContext'
+import { layoutWrapper } from './styles'
 
 export default function RootLayout({
   children,
@@ -20,10 +21,12 @@ export default function RootLayout({
       <body className={serif.className}>
         <WalletProvider>
           <ToastProvider>
-            <Nav />
-            <Main>{children}</Main>
-            <Footer />
-            <Toaster />
+            <div className={layoutWrapper}>
+              <Nav />
+              <Main>{children}</Main>
+              <Footer />
+              <Toaster />
+            </div>
           </ToastProvider>
         </WalletProvider>
       </body>

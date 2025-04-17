@@ -27,6 +27,7 @@ export default defineConfig({
       margin: 0,
       height: '100%',
       color: 'text.main',
+      background: 'primary.dark-blue',
       textRendering: 'optimizeLegibility',
       WebkitFontSmoothing: 'antialiased',
       MozOsxFontSmoothing: 'auto',
@@ -43,28 +44,9 @@ export default defineConfig({
       },
     },
 
-    body: {
-      position: 'relative',
-      display: 'flex',
-      flexDirection: 'column',
-      height: '100%',
-      minHeight: '100dvh',
-      backgroundAttachment: 'fixed',
-      backgroundBlendMode: 'overlay',
-      backgroundColor: 'primary.dark-blue',
-      fontFamily: 'primary',
-    },
-
     main: {
       position: 'relative',
       zIndex: 1,
-
-      // padding: {
-      //   base: '0 0.5rem 1.5rem',
-      //   tablet: '0 1rem 1.5rem',
-      //   laptop: '0 2rem 2rem',
-      //   desktop: '0 4rem 2rem',
-      // },
     },
   },
 

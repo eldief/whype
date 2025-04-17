@@ -18,6 +18,7 @@ export const button = css({
   _enabled: {
     background: 'primary.mint-green',
     color: 'primary.dark-green',
+    border: '1px solid token(colors.primary.light-background)',
   },
   _disabled: {
     cursor: 'not-allowed',
