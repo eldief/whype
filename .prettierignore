@@ -1,0 +1,14 @@
+*.snap
+*.sh
+*.png
+*.jpg
+*.csv
+*.md
+
+public
+package.json
+
+node_modules/
+build/
+dist/
+styled-system/
