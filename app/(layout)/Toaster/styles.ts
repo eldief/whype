@@ -11,10 +11,11 @@ export const list = css({
     base: '0.5rem',
     tablet: '1rem',
   },
-
   width: {
     base: 'calc(100% - 1rem)',
     tablet: '20rem',
     laptop: '20rem',
   },
+  display: 'flex',
+  flexDirection: 'column-reverse',
 })

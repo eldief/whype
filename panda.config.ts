@@ -58,6 +58,16 @@ export default defineConfig({
       desktop: '1440px',
       hd: '1920px',
     },
+    keyframes: {
+      'slide-in-right': {
+        from: { transform: 'translateX(100%)', opacity: 0 },
+        to: { transform: 'translateX(0)', opacity: 1 },
+      },
+      'slide-out-right': {
+        from: { transform: 'translateX(0)', opacity: 1 },
+        to: { transform: 'translateX(100%)', opacity: 0 },
+      },
+    },
     tokens: {
       colors: {
         primary: {

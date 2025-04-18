@@ -36,3 +36,11 @@ export const toastMessage = css({
   whiteSpace: 'no-wrap',
   textOverflow: 'ellipsis',
 })
+
+export const toastIn = css({
+  animation: `slide-in-right 0.3s ease-out forwards`,
+})
+
+export const toastOut = css({
+  animation: `slide-out-right 0.3s ease-in forwards`,
+})
