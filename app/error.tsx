@@ -8,5 +8,5 @@ export default function Error({ error }: { error: Error }) {
     console.error(error)
   }, [error])
 
-  return <ErrorWrapper code={500} />
+  return <ErrorWrapper code={500} message={'An error has occurred'} />
 }

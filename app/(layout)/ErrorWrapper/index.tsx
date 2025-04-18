@@ -19,9 +19,8 @@ import {
 } from './styles'
 import { useRouter } from 'next/navigation'
 
-const ErrorWrapper = ({ code }: { code: 404 | 500 }) => {
+const ErrorWrapper = ({ code, message }: { code: 404 | 500; message: string }) => {
   const router = useRouter()
-  const header = code === 500 ? 'An error has occurred' : 'Not found'
 
   return (
     <div className={main}>
@@ -39,11 +38,11 @@ const ErrorWrapper = ({ code }: { code: 404 | 500 }) => {
         </div>
       </section>
       <section className={errorWrapper}>
-        <small className={errorHeader}>{header}</small>
+        <small className={errorHeader}>{message}</small>
         <section className={errorFieldWrapper}>{code}</section>
       </section>
       <section className={suspenceButtonWrapper}>
-        <button className={suspenceButton} onClick={() => router.push('/')}>
+        <button className={suspenceButton} onClick={() => router.replace('/')}>
           {'HOME'}
         </button>
       </section>
