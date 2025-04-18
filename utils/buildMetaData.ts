@@ -13,9 +13,9 @@ const buildMetaData = (): Metadata => {
   const shouldFollowAndIndex = process.env.NEXT_PUBLIC_VERCEL_ENV === 'production'
   const images = [
     {
-      width: 1200,
       height: 630,
-      url: '/cover.png',
+      width: 1200,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/cover.png`,
     },
   ]
 
