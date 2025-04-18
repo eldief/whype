@@ -1,9 +1,16 @@
 import { css } from '@/styled-system/css'
 
 export const addressButton = css({
+  width: {
+    base: '8rem',
+    tablet: '12rem',
+  },
   padding: '0.25rem 0.5rem',
   border: '1px solid token(colors.primary.mint-green)',
   borderRadius: '0.25rem',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
   _hover: {
     cursor: 'pointer',
     border: '1px solid token(colors.primary.mint-green-lighter)',
@@ -11,7 +18,10 @@ export const addressButton = css({
 })
 
 export const chainButton = css({
-  // maxWidth: '10rem',
+  width: {
+    base: '8rem',
+    tablet: '12rem',
+  },
   padding: '0.25rem 0.5rem',
   border: '1px solid token(colors.primary.mint-green)',
   borderRadius: '0.25rem',

@@ -4,15 +4,15 @@ export const list = css({
   position: 'fixed',
   zIndex: '100',
   bottom: {
-    base: '0.5rem',
-    tablet: '1rem',
+    base: '4.2rem',
+    tablet: '4.2rem',
   },
   right: {
-    base: '0.5rem',
-    tablet: '1rem',
+    base: '1rem',
+    tablet: '2rem',
   },
   width: {
-    base: 'calc(100% - 1rem)',
+    base: 'calc(100% - 2rem)',
     tablet: '20rem',
     laptop: '20rem',
   },

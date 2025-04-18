@@ -10,8 +10,17 @@ import { css } from '@/styled-system/css'
 import PATHS from '@/constants/paths'
 import { toShortAddress } from '@/utils/shortAddress'
 import { getChainNameById } from '@/utils/toChainName'
+import { useEffect, useState } from 'react'
 
 const Nav = () => {
+  const [width, setWidth] = useState<number>(744)
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth)
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   const { address, isConnected } = useAccount()
   const { openAccountModal } = useAccountModal()
   const { openConnectModal } = useConnectModal()
@@ -46,7 +55,7 @@ const Nav = () => {
 
       {isConnected && (
         <button className={addressButton} onClick={openAccountModal}>
-          {toShortAddress(address)}
+          {width > 744 ? toShortAddress(address, 6) : toShortAddress(address, 3)}
         </button>
       )}
     </nav>

@@ -8,6 +8,7 @@ import {
   toastWrapper,
   toastIn,
   toastOut,
+  progressBar,
 } from './styles'
 import { useToast } from '../../context/ToastContext'
 import type { ToastMessage } from '../../types'
@@ -31,6 +32,7 @@ const Toast = ({ toast }: { toast: ToastMessage }) => {
   return (
     <li className={cx(toastWrapper, toastType, isExiting ? toastOut : toastIn)}>
       {toast.message && <p className={toastMessage}>{toast.message}</p>}
+      <div className={progressBar} />
     </li>
   )
 }

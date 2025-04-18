@@ -67,6 +67,10 @@ export default defineConfig({
         from: { transform: 'translateX(0)', opacity: 1 },
         to: { transform: 'translateX(100%)', opacity: 0 },
       },
+      countdown: {
+        from: { width: '100%' },
+        to: { width: '0%' },
+      },
     },
     tokens: {
       colors: {
