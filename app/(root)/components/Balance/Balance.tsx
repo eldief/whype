@@ -10,11 +10,21 @@ const Balance = ({ state }: { state: TokenState }) => {
   const label = state.action === 'WRAP' ? 'HYPE' : 'WHYPE'
   const icon = state.action === 'WRAP' ? '/icons/hype.svg' : '/icons/whype.svg'
 
-  const isLoading = state.balance?.isLoading && !state.balance?.isError
+  const isError = state.balance?.isError ?? false
+  const isLoading = state.balance?.isLoading && !isError
   const hasData = state.balance?.data && state.balance.data.value
-  const formattedBalance = hasData
-    ? formatWithSeparator(formatUnits(state.balance.data!.value, state.balance.data!.decimals), 3)
-    : '0.000'
+
+  let displayValue = '0.000'
+  if (isError) {
+    displayValue = 'Error'
+  } else if (isLoading) {
+    displayValue = 'Loading...'
+  } else if (hasData) {
+    displayValue = formatWithSeparator(
+      formatUnits(state.balance.data!.value, state.balance.data!.decimals),
+      3,
+    )!
+  }
 
   return (
     <section className={balance}>
@@ -23,8 +33,8 @@ const Balance = ({ state }: { state: TokenState }) => {
         <div className={balanceCol}>
           <strong>{label}</strong>
           <small className={balanceWrapper}>
-            {'Balance '}
-            {isLoading ? 'loading...' : formattedBalance}
+            {'Balance: '}
+            {displayValue}
           </small>
         </div>
       </div>
