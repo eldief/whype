@@ -27,7 +27,7 @@ export default defineConfig({
       margin: 0,
       height: '100%',
       color: 'text.main',
-      background: 'primary.dark-blue',
+      background: 'primary.background',
       textRendering: 'optimizeLegibility',
       WebkitFontSmoothing: 'antialiased',
       MozOsxFontSmoothing: 'auto',
