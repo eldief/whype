@@ -32,16 +32,15 @@ export const inputFieldWrapper = css({
   display: 'flex',
   flexDirection: 'row',
   width: '100%',
-  // height: '100%',
   justifyContent: 'center',
   alignItems: 'center',
   marginX: 'auto',
 })
 
 export const inputField = css({
-  width: '100%', // Let the input fill the wrapper
+  width: '100%',
   height: '100%',
-  textAlign: 'center', // Caret and text align right
+  textAlign: 'center',
   outline: 'none',
   fontSize: '4rem',
 })

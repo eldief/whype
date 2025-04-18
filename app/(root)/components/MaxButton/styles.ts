@@ -8,7 +8,6 @@ export const button = css({
   borderRadius: '0.25rem',
   transition: 'all 200ms ease',
   border: '1px solid token(colors.primary.mint-green)',
-  // background: 'primary.mint-green',
   _hover: {
     cursor: 'pointer',
     border: '1px solid token(colors.primary.mint-green-lighter)',

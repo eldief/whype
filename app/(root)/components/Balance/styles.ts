@@ -6,10 +6,7 @@ export const balance = css({
   alignItems: 'center',
   flexDirection: 'column',
   justifyContent: 'space-between',
-  // background: 'primary.dark-background',
-  // border: '1px solid token(colors.primary.light-background)',
   borderRadius: '0.25rem',
-  // padding: '0.75rem',
 })
 
 export const balanceWrapper = css({

@@ -1,9 +1,5 @@
-'use client'
-
-import { useRouter } from 'next/navigation'
+import ErrorWrapper from './(layout)/ErrorWrapper'
 
 export default function NotFound() {
-  const router = useRouter()
-  router.replace('/')
-  return <></>
+  return <ErrorWrapper code={404} />
 }
