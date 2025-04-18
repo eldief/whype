@@ -69,7 +69,7 @@ const Root = () => {
   useEffect(() => {
     setAmount(undefined)
     setError(undefined)
-  }, [action, address, setAmount, setError])
+  }, [action, setAmount, setError])
 
   const currentState = useMemo<TokenState>(
     () => ({

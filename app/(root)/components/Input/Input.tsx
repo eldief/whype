@@ -14,11 +14,9 @@ const Input = ({
   setError: Dispatch<SetStateAction<string | undefined>>
 }) => {
   useEffect(() => {
-    {
-      const balance = getBalance(state.balance?.data)
-      const isValid = state.amount === undefined || state.amount <= balance
-      if (!isValid) setError('Insufficient balance')
-    }
+    const balance = getBalance(state.balance?.data)
+    const isValid = state.amount == null || state.amount <= balance
+    setError(isValid ? undefined : 'Insufficient balance')
   }, [state.amount, state.balance, setError])
 
   const header = state.action === 'WRAP' ? 'wrapping' : 'unwrapping'
