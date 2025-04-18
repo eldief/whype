@@ -33,7 +33,7 @@ const Button = ({
   return (
     <section className={buttonWrapper}>
       {!isConnecting && !isConnected && (
-        <button className={button} onClick={openConnectModal} disabled={Boolean(state?.error)}>
+        <button className={button} onClick={openConnectModal}>
           {'CONNECT'}
         </button>
       )}
