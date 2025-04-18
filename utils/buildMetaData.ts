@@ -6,25 +6,26 @@ import { token } from '@/styled-system/tokens'
 const brandColor = token('colors.primary.dark-green')
 
 const buildMetaData = (): Metadata => {
-  const defaultTitle = `WHype`
-  const defaultDescription = 'W <> Hype'
+  const name = 'WHYPE'
+  const title = `Whype`
+  const description = 'Easily wrap HYPE tokens into WHYPE'
   const hash = `${process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA?.slice(0, 7)}`
+  const shouldFollowAndIndex = process.env.NEXT_PUBLIC_VERCEL_ENV === 'production'
   const images = [
     {
-      height: 600,
-      url: '/cover.svg',
       width: 1200,
+      height: 630,
+      url: '/cover.png',
     },
   ]
-  const shouldFollowAndIndex = process.env.NEXT_PUBLIC_VERCEL_ENV === 'production'
 
   return {
     alternates: {
       canonical: '/',
     },
-    appleWebApp: { title: 'WHype' },
-    applicationName: 'WHype',
-    description: defaultDescription,
+    appleWebApp: { title: title },
+    applicationName: title,
+    description: description,
     icons: {
       icon: [
         {
@@ -54,12 +55,12 @@ const buildMetaData = (): Metadata => {
     manifest: '/site.webmanifest',
     metadataBase: new URL(LINKS.SITE_URL),
     openGraph: {
-      description: 'W <> Hype',
+      description: description,
       images,
-      title: 'WHype',
+      title: title,
       type: 'website',
       url: '/',
-      siteName: 'WHype',
+      siteName: name,
     },
     other: {
       'msapplication-TileColor': brandColor,
@@ -68,13 +69,13 @@ const buildMetaData = (): Metadata => {
       follow: shouldFollowAndIndex,
       index: shouldFollowAndIndex,
     },
-    title: defaultTitle,
+    title: title,
     twitter: {
       card: 'summary_large_image',
       creator: '@eldief',
-      description: defaultDescription,
+      description: description,
       images,
-      title: defaultTitle,
+      title: title,
     },
   }
 }
