@@ -6,10 +6,8 @@ export const main = css({
   maxWidth: '420px',
   display: 'flex',
   flexDirection: 'column',
-  // background: 'primary.dark-blue',
   borderRadius: '0.25rem',
-  // border: '3px solid token(colors.primary.background)',
-  padding: '0.5rem',
+  padding: '0.5rem 0.75rem',
   gap: '1rem',
 })
 

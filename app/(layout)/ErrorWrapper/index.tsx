@@ -16,6 +16,7 @@ import {
   suspenceButton,
   suspenceMaxButton,
   suspenceBalanceRowWrapper,
+  errorMessagePlaceholder,
 } from './styles'
 import { useRouter } from 'next/navigation'
 
@@ -40,6 +41,7 @@ const ErrorWrapper = ({ code, message }: { code: 404 | 500; message: string }) =
       <section className={errorWrapper}>
         <small className={errorHeader}>{message}</small>
         <section className={errorFieldWrapper}>{code}</section>
+        <span className={errorMessagePlaceholder} />
       </section>
       <section className={suspenceButtonWrapper}>
         <button className={suspenceButton} onClick={() => router.replace('/')}>

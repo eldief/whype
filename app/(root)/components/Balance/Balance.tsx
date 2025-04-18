@@ -29,7 +29,7 @@ const Balance = ({ state }: { state: TokenState }) => {
   return (
     <section className={balance}>
       <div className={balanceRow}>
-        <Image src={icon} alt={`${label} icon`} width={32} height={32} className={rounded} />
+        <Image src={icon} alt={`${label} icon`} width={36} height={36} className={rounded} />
         <div className={balanceCol}>
           <strong>{label}</strong>
           <small className={balanceWrapper}>

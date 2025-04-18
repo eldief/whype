@@ -7,7 +7,7 @@ export const main = css({
   display: 'flex',
   flexDirection: 'column',
   borderRadius: '0.25rem',
-  padding: '0.5rem',
+  padding: '0.5rem 0.75rem',
   gap: '1rem',
 })
 
@@ -17,7 +17,7 @@ export const suspenceSelectors = css({
   height: '37.2px',
   borderRadius: '1rem',
   background: 'primary.dark-background',
-  // border: '1px solid token(colors.primary.light-background)'
+  border: '1px solid token(colors.primary.light-background)',
 })
 
 export const suspenceBalanceWrapper = css({
@@ -46,10 +46,11 @@ export const suspenceBalanceRow = css({
 })
 
 export const suspenceIcon = css({
-  width: '32px',
-  height: '32px',
+  width: '36px',
+  height: '36px',
   rounded: '100%',
   background: 'primary.dark-background',
+  border: '1px solid token(colors.primary.light-background)',
 })
 
 export const suspenceCol = css({
@@ -62,16 +63,18 @@ export const suspenceCol = css({
 
 export const suspenceSymbol = css({
   width: '5rem',
-  height: '20px',
-  borderRadius: '1rem',
+  height: '19px',
+  borderRadius: '0.25rem',
   background: 'primary.dark-background',
+  border: '1px solid token(colors.primary.light-background)',
 })
 
 export const suspenceBalance = css({
   width: '8rem',
-  height: '15px',
-  borderRadius: '1rem',
+  height: '14px',
+  borderRadius: '0.25rem',
   background: 'primary.dark-background',
+  border: '1px solid token(colors.primary.light-background)',
 })
 
 export const suspenceMaxButton = css({
@@ -79,6 +82,7 @@ export const suspenceMaxButton = css({
   height: '28.4px',
   borderRadius: '0.25rem',
   background: 'primary.dark-background',
+  border: '1px solid token(colors.primary.light-background)',
 })
 
 export const errorWrapper = css({
@@ -111,6 +115,11 @@ export const errorFieldWrapper = css({
   alignItems: 'center',
   marginX: 'auto',
   fontSize: '4rem',
+})
+
+export const errorMessagePlaceholder = css({
+  height: '1.5rem',
+  width: '100%',
 })
 
 export const suspenceButtonWrapper = css({
