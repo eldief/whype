@@ -6,20 +6,20 @@ export const toastWrapper = css({
   margin: '0.5rem 0 0',
   padding: '0.5rem',
 
-  background: 'primary.background',
+  background: 'primary.dark-background',
   rounded: '0.75rem',
   display: 'flex',
   justifyContent: 'center',
 })
 
 export const defaultToast = css({
-  borderColor: 'primary.light-green',
+  borderColor: 'primary.light-background',
   borderWidth: '1px',
   borderStyle: 'solid',
 })
 
 export const successToast = css({
-  borderColor: 'primary.mint-green-lighter',
+  borderColor: 'primary.mint-green',
   borderWidth: '1px',
   borderStyle: 'solid',
 })
