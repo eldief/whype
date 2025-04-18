@@ -16,6 +16,18 @@ export const footer = css({
   borderTop: '1.5px solid token(colors.primary.background)!',
 })
 
+export const links = css({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  gap: '1rem',
+})
+
+export const separator = css({
+  paddingRight: '1rem',
+  borderRight: '1px solid token(colors.primary.light-background)',
+})
+
 export const content = css({
   color: 'text.subtle',
 })
