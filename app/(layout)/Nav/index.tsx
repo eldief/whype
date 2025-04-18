@@ -7,7 +7,6 @@ import { useAccount, useChainId } from 'wagmi'
 
 import { addressButton, chainButton, connectButton, nav, icon } from './styles'
 import { css } from '@/styled-system/css'
-import PATHS from '@/constants/paths'
 import { toShortAddress } from '@/utils/shortAddress'
 import { getChainNameById } from '@/utils/toChainName'
 import { useEffect, useState } from 'react'
@@ -29,7 +28,7 @@ const Nav = () => {
 
   return (
     <nav className={nav}>
-      <Link href={PATHS.HOME} key='home'>
+      <Link href={'/'} key='home'>
         <Image
           src={'/icons/hype-to-whype.svg'}
           alt='The site logo'
