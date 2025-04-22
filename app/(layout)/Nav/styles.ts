@@ -18,21 +18,33 @@ export const addressButton = css({
 })
 
 export const chainButton = css({
-  width: {
-    base: '8rem',
-    tablet: '12rem',
-  },
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'end',
+  justifyContent: 'center',
+  lineHeight: '1rem',
   padding: '0.25rem 0.5rem',
-  border: '1px solid token(colors.primary.mint-green)',
   borderRadius: '0.25rem',
-  marginRight: '0.5rem',
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
+  transition: 'all 200ms ease',
   _hover: {
     cursor: 'pointer',
-    border: '1px solid token(colors.primary.mint-green-lighter)',
+    background: 'primary.dark-background',
   },
+})
+
+export const iconWrapper = css({
+  width: 40,
+})
+
+export const invalidChainName = css({
+  color: 'primary.error',
+})
+
+export const chainName = css({
+  color: 'primary.mint-green',
 })
 
 export const connectButton = css({

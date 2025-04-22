@@ -5,25 +5,33 @@ import { formatUnits } from 'viem'
 import formatWithSeparator from '@/utils/formatWithSeparator'
 import Image from 'next/image'
 import { TokenState } from '../../types'
+import { useAccount } from 'wagmi'
 
 const Balance = ({ state }: { state: TokenState }) => {
-  const label = state.action === 'WRAP' ? 'HYPE' : 'WHYPE'
-  const icon = state.action === 'WRAP' ? '/icons/hype.svg' : '/icons/whype.svg'
+  const { isConnected } = useAccount()
 
-  const isError = state.balance?.isError ?? false
-  const isLoading = state.balance?.isLoading && !isError
-  const hasData = state.balance?.data && state.balance.data.value
+  const isWrap = state.action === 'WRAP'
+  const label = isWrap ? 'HYPE' : 'WHYPE'
+  const icon = isWrap ? '/icons/hype.svg' : '/icons/whype.svg'
 
-  let displayValue = '0.000'
-  if (isError) {
-    displayValue = 'Error'
+  const balanceState = state.balance
+  const isError = balanceState?.isError ?? false
+  const isLoading = balanceState?.isLoading && !isError
+  const hasData = !!balanceState?.data?.value
+
+  let displayValue = 'Balance: 0.000'
+
+  if (!isConnected) {
+    displayValue = 'Not connected'
+  } else if (!state.isSupportedNetwork) {
+    displayValue = 'Unsupported chain'
+  } else if (isError) {
+    displayValue = 'Balance: error'
   } else if (isLoading) {
-    displayValue = 'Loading...'
+    displayValue = 'Balance: loading...'
   } else if (hasData) {
-    displayValue = formatWithSeparator(
-      formatUnits(state.balance.data!.value, state.balance.data!.decimals),
-      3,
-    )!
+    const { value, decimals } = balanceState!.data!
+    displayValue = `Balance: ${formatWithSeparator(formatUnits(value, decimals), 3)}`
   }
 
   return (
@@ -32,10 +40,7 @@ const Balance = ({ state }: { state: TokenState }) => {
         <Image src={icon} alt={`${label} icon`} width={36} height={36} className={rounded} />
         <div className={balanceCol}>
           <strong>{label}</strong>
-          <small className={balanceWrapper}>
-            {'Balance: '}
-            {displayValue}
-          </small>
+          <small className={balanceWrapper}>{displayValue}</small>
         </div>
       </div>
     </section>

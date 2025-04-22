@@ -12,10 +12,14 @@ import { useAccount, useBalance, useChainId } from 'wagmi'
 import { wrapToken } from '@/wagmi/wrapToken'
 import { unwrapToken } from '@/wagmi/unwrapToken'
 import { balanceRow, main } from './styles'
+import { useDynamicContext } from '@dynamic-labs/sdk-react-core'
+import { getChainInfoById } from '@/utils/toChainName'
 
 const Root = () => {
   const { address } = useAccount()
   const chainId = useChainId()
+  const { network } = useDynamicContext()
+  const { isSupported } = getChainInfoById(network)
 
   const hype = useBalance({
     address,
@@ -75,6 +79,7 @@ const Root = () => {
     () => ({
       address,
       chainId,
+      isSupportedNetwork: isSupported,
       wrapperAddress: WHYPE_ADDRESSES[chainId],
       action,
       amount,
@@ -83,7 +88,7 @@ const Root = () => {
       balance: balances[action],
       onClick: onClick[action],
     }),
-    [action, address, amount, error, chainId, balances, logos, onClick],
+    [action, address, amount, error, chainId, balances, logos, onClick, isSupported],
   )
 
   return (

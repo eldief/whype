@@ -1,14 +1,16 @@
-import { getDefaultConfig } from '@rainbow-me/rainbowkit'
-import { CHAINS } from './chains'
+import { createConfig, http } from 'wagmi'
+import { hyperliquid, hyperliquidTestnet } from './chains'
 
-let singleton: ReturnType<typeof getDefaultConfig> | undefined
+let singleton: ReturnType<typeof createConfig> | undefined
 
 if (!singleton) {
-  singleton = getDefaultConfig({
-    appName: 'WHype',
-    projectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_ID!,
-    chains: [CHAINS[0], CHAINS[1]],
-    ssr: false,
+  singleton = createConfig({
+    chains: [hyperliquid, hyperliquidTestnet],
+    transports: {
+      [hyperliquid.id]: http(),
+      [hyperliquidTestnet.id]: http(),
+    },
+    multiInjectedProviderDiscovery: false,
   })
 }
 

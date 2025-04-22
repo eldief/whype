@@ -7,6 +7,7 @@ export interface TokenState {
   address?: `0x${string}`
   wrapperAddress: `0x${string}`
   chainId: number
+  isSupportedNetwork: boolean
   action: ActionType
   amount?: number
   error?: string

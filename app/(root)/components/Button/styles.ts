@@ -6,6 +6,10 @@ export const buttonWrapper = css({
   width: '100%',
 })
 
+export const buttonContainer = css({
+  width: '100%',
+})
+
 export const button = css({
   padding: '0.75rem',
   width: '100%',

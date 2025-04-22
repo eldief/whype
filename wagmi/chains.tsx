@@ -20,7 +20,7 @@ export const hyperliquid = defineChain({
   testnet: false,
 })
 
-export const hypeliquidTestnet = defineChain({
+export const hyperliquidTestnet = defineChain({
   id: 998,
   name: 'Testnet Hyperliquid',
   nativeCurrency: {
@@ -40,4 +40,4 @@ export const hypeliquidTestnet = defineChain({
   testnet: true,
 })
 
-export const CHAINS: [Chain, ...Chain[]] = [hyperliquid, hypeliquidTestnet]
+export const supportedChains: Chain[] = [hyperliquid, hyperliquidTestnet]

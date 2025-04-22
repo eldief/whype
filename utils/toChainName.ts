@@ -1,6 +1,12 @@
-import { CHAINS } from '@/wagmi/chains'
+import { supportedChains } from '@/wagmi/chains'
 
-export function getChainNameById(id: number): string | undefined {
-  const chain = CHAINS.find(chain => chain.id === id)
-  return chain?.name
+export function getChainInfoById(id: string | number | undefined): {
+  isSupported: boolean
+  name?: string
+} {
+  const chain = supportedChains.find(chain => chain.id === Number(id))
+  return {
+    isSupported: !!chain,
+    name: chain?.name,
+  }
 }
