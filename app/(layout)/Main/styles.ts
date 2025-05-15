@@ -6,7 +6,7 @@ export const main = css({
   display: 'flex',
   flexDirection: 'column',
   flexGrow: 1,
-  paddingTop: '4rem',
+  paddingY: '4rem',
   borderRadius: '0.25rem',
   borderX: '3px solid token(colors.primary.background)',
   borderY: '1.5px solid token(colors.primary.background)!',
