@@ -19,6 +19,7 @@ export const button = css({
   borderRadius: '1rem',
   fontWeight: 'bold',
   transition: 'all 200ms ease',
+  overflow: 'hidden',
   _enabled: {
     background: 'primary.mint-green',
     color: 'primary.dark-green',

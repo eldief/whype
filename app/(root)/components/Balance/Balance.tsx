@@ -4,13 +4,15 @@ import { balance, balanceCol, balanceRow, balanceWrapper, rounded } from './styl
 import { formatUnits } from 'viem'
 import formatWithSeparator from '@/utils/formatWithSeparator'
 import Image from 'next/image'
-import { TokenState } from '../../types'
+import { ActionType, TokenState } from '../../types'
 import { useAccount } from 'wagmi'
+import { AnimatePresence, motion } from 'framer-motion'
+import { balanceAnimation } from '@/app/animations'
 
 const Balance = ({ state }: { state: TokenState }) => {
   const { isConnected } = useAccount()
 
-  const isWrap = state.action === 'WRAP'
+  const isWrap = state.action === ActionType.WRAP
   const label = isWrap ? 'HYPE' : 'WHYPE'
   const icon = isWrap ? '/icons/hype.svg' : '/icons/whype.svg'
 
@@ -36,13 +38,15 @@ const Balance = ({ state }: { state: TokenState }) => {
 
   return (
     <section className={balance}>
-      <div className={balanceRow}>
-        <Image src={icon} alt={`${label} icon`} width={36} height={36} className={rounded} />
-        <div className={balanceCol}>
-          <strong>{label}</strong>
-          <small className={balanceWrapper}>{displayValue}</small>
-        </div>
-      </div>
+      <AnimatePresence mode='wait' initial={false}>
+        <motion.div key={label + '-balance'} className={balanceRow} {...balanceAnimation}>
+          <Image src={icon} alt={`${label} icon`} width={36} height={36} className={rounded} />
+          <div className={balanceCol}>
+            <strong>{label}</strong>
+            <small className={balanceWrapper}>{displayValue}</small>
+          </div>
+        </motion.div>
+      </AnimatePresence>
     </section>
   )
 }

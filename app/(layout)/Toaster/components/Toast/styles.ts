@@ -21,7 +21,6 @@ export const progressBar = css({
   height: '4px',
   backgroundColor: 'primary.mint-green-lighter',
   width: '100%',
-  animation: 'countdown 5s linear forwards',
 })
 
 export const defaultToast = css({
@@ -42,12 +41,4 @@ export const toastMessage = css({
   overflow: 'hidden',
   whiteSpace: 'no-wrap',
   textOverflow: 'ellipsis',
-})
-
-export const toastIn = css({
-  animation: `slide-in-right 0.3s ease-out forwards`,
-})
-
-export const toastOut = css({
-  animation: `slide-out-right 0.3s ease-in forwards`,
 })

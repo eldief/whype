@@ -23,14 +23,6 @@ export const slider = css({
   zIndex: 0,
 })
 
-export const sliderWrap = css({
-  left: '0%',
-})
-
-export const sliderUnwrap = css({
-  left: '50%',
-})
-
 export const selector = css({
   width: '100%',
   display: 'flex',

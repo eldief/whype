@@ -1,8 +1,10 @@
 import { inputHeader, inputWrapper, inputField, inputFieldWrapper, errorMessage } from './styles'
 import { NumericFormat } from 'react-number-format'
 import { getBalance } from '@/utils/getBalance'
-import { TokenState } from '../../types'
+import { ActionType, TokenState } from '../../types'
 import { Dispatch, SetStateAction, useEffect } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { slideInAnimation, slideOutAnimation } from '@/app/animations'
 
 const Input = ({
   state,
@@ -19,11 +21,20 @@ const Input = ({
     setError(isValid ? undefined : 'Insufficient balance')
   }, [state.amount, state.balance, setError])
 
-  const header = state.action === 'WRAP' ? 'wrapping' : 'unwrapping'
+  const header = state.action === ActionType.WRAP ? 'wrapping' : 'unwrapping'
 
   return (
     <section className={inputWrapper}>
-      <small className={inputHeader}>{`You're ${header}`}</small>
+      <AnimatePresence mode='wait' initial={false}>
+        <motion.small
+          key={header + '-action'}
+          className={inputHeader}
+          style={{ textAlign: state.action === ActionType.WRAP ? 'start' : 'end' }}
+          {...(state.action === ActionType.WRAP ? slideInAnimation : slideOutAnimation)}
+        >
+          {`You're ${header}`}
+        </motion.small>
+      </AnimatePresence>
       <section className={inputFieldWrapper}>
         <NumericFormat
           allowNegative={false}

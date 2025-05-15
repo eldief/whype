@@ -6,12 +6,12 @@ import {
   errorToast,
   successToast,
   toastWrapper,
-  toastIn,
-  toastOut,
   progressBar,
 } from './styles'
 import { useToast } from '../../context/ToastContext'
 import type { ToastMessage } from '../../types'
+import { AnimatePresence, motion } from 'framer-motion'
+import { progressBarAnimation, toastAnimation } from '@/app/animations'
 
 const Toast = ({ toast }: { toast: ToastMessage }) => {
   const { removeToast } = useToast()
@@ -30,10 +30,28 @@ const Toast = ({ toast }: { toast: ToastMessage }) => {
     toast.type === 'error' ? errorToast : toast.type === 'success' ? successToast : defaultToast
 
   return (
-    <li className={cx(toastWrapper, toastType, isExiting ? toastOut : toastIn)}>
-      {toast.message && <p className={toastMessage}>{toast.message}</p>}
-      <div className={progressBar} />
-    </li>
+    <AnimatePresence mode='wait' initial={true}>
+      {!isExiting && (
+        <motion.li
+          key={toast.id + '-toast'}
+          className={cx(toastWrapper, toastType)}
+          initial='initial'
+          animate='animate'
+          exit='exit'
+          variants={toastAnimation}
+        >
+          {toast.message && <p className={toastMessage}>{toast.message}</p>}
+          <motion.div
+            key={toast.id + '-progressbar'}
+            className={progressBar}
+            variants={progressBarAnimation}
+            initial='initial'
+            animate='animate'
+            exit='exit'
+          />
+        </motion.li>
+      )}
+    </AnimatePresence>
   )
 }
 

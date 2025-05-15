@@ -1,9 +1,11 @@
 import { button, buttonContainer, buttonWrapper } from './styles'
 import { useAccount, useConfig } from 'wagmi'
-import { TokenState } from '../../types'
+import { TokenState, ActionType } from '../../types'
 import { useToast } from '@/app/(layout)/Toaster/context/ToastContext'
 import { Dispatch, SetStateAction, useCallback } from 'react'
 import { DynamicConnectButton, useDynamicContext } from '@dynamic-labs/sdk-react-core'
+import { AnimatePresence, motion } from 'framer-motion'
+import { slideInAnimation, slideOutAnimation } from '@/app/animations'
 
 const Button = ({
   state,
@@ -50,7 +52,14 @@ const Button = ({
           disabled={!state.amount || Boolean(state?.error) || !state.isSupportedNetwork}
           onClick={handleClick}
         >
-          {state.action}
+          <AnimatePresence mode='wait' initial={false}>
+            <motion.span
+              key={state.action}
+              {...(state.action === ActionType.WRAP ? slideInAnimation : slideOutAnimation)}
+            >
+              {state.action}
+            </motion.span>
+          </AnimatePresence>
         </button>
       )}
     </section>

@@ -1,34 +1,39 @@
 import { Dispatch, SetStateAction } from 'react'
-import {
-  buttonWrapper,
-  selector,
-  selectorSelected,
-  slider,
-  sliderUnwrap,
-  sliderWrap,
-} from './styles'
+import { buttonWrapper, selector, selectorSelected, slider } from './styles'
 import { cx } from '@/styled-system/css'
 import { ActionType } from '../../types'
+import { AnimatePresence, motion } from 'framer-motion'
+import { selectorAnimation } from '@/app/animations'
 
 const Selectors = ({
   action,
   setAction,
 }: {
-  action: string
+  action: ActionType
   setAction: Dispatch<SetStateAction<ActionType>>
 }) => {
   return (
     <section className={buttonWrapper}>
-      <div className={cx(slider, action === 'WRAP' ? sliderWrap : sliderUnwrap)} />
+      <AnimatePresence mode='wait' initial={false}>
+        <motion.div
+          key={action}
+          className={slider}
+          custom={action === ActionType.WRAP ? -1 : 1}
+          initial='initial'
+          animate='animate'
+          exit='exit'
+          variants={selectorAnimation}
+        />
+      </AnimatePresence>
       <button
-        className={cx(selector, action === 'WRAP' ? selectorSelected : '')}
-        onClick={() => setAction('WRAP')}
+        className={cx(selector, action === ActionType.WRAP ? selectorSelected : '')}
+        onClick={() => setAction(ActionType.WRAP)}
       >
         {'Wrap'}
       </button>
       <button
-        className={cx(selector, action === 'UNWRAP' ? selectorSelected : '')}
-        onClick={() => setAction('UNWRAP')}
+        className={cx(selector, action === ActionType.UNWRAP ? selectorSelected : '')}
+        onClick={() => setAction(ActionType.UNWRAP)}
       >
         {'Unwrap'}
       </button>

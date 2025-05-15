@@ -1,7 +1,12 @@
 import { Config, UseBalanceReturnType } from 'wagmi'
 import { ToastMessage } from '../(layout)/Toaster/types'
 
-export type ActionType = 'WRAP' | 'UNWRAP'
+export const ActionType = {
+  WRAP: 'WRAP',
+  UNWRAP: 'UNWRAP',
+} as const
+
+export type ActionType = (typeof ActionType)[keyof typeof ActionType]
 
 export interface TokenState {
   address?: `0x${string}`

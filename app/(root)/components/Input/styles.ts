@@ -16,7 +16,6 @@ export const inputWrapper = css({
 
 export const inputHeader = css({
   width: '100%',
-  alignSelf: 'start',
   color: 'text.subtle',
   paddingX: '0.25rem',
 })
