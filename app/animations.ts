@@ -8,7 +8,7 @@ export const toastAnimation = {
     opacity: 1,
     transition: {
       duration: 0.3,
-      ease: 'easeOut',
+      ease: 'easeOut' as const,
     },
   },
   exit: {
@@ -16,7 +16,7 @@ export const toastAnimation = {
     opacity: 0,
     transition: {
       duration: 0.3,
-      ease: 'easeIn',
+      ease: 'easeIn' as const,
     },
   },
 }
@@ -25,7 +25,10 @@ export const progressBarAnimation = {
   initial: { width: '100%' },
   animate: {
     width: '0%',
-    transition: { duration: 5, ease: 'linear' },
+    transition: {
+      duration: 5,
+      ease: 'linear' as const,
+    },
   },
   exit: { width: '0%' },
 }
@@ -61,7 +64,7 @@ export const selectorAnimation = {
     opacity: 1,
     transition: {
       duration: 0.4,
-      ease: [0.25, 0.1, 0.25, 1],
+      ease: [0.25, 0.1, 0.25, 1] as const,
     },
   }),
   exit: (direction: number) => ({
@@ -69,7 +72,7 @@ export const selectorAnimation = {
     opacity: 1,
     transition: {
       duration: 0.3,
-      ease: [0.25, 0.1, 0.25, 1],
+      ease: [0.25, 0.1, 0.25, 1] as const,
     },
   }),
 }

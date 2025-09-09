@@ -44,10 +44,10 @@ const Toast = ({ toast }: { toast: ToastMessage }) => {
           <motion.div
             key={toast.id + '-progressbar'}
             className={progressBar}
-            variants={progressBarAnimation}
             initial='initial'
             animate='animate'
             exit='exit'
+            variants={progressBarAnimation}
           />
         </motion.li>
       )}
