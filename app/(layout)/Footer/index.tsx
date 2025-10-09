@@ -31,7 +31,7 @@ const Footer = () => {
         </Link>
         <Link href={LINKS.COMMIT_HASH} target='_blank' rel='noopener noreferrer' key='commit-hash'>
           <small className={content}>
-            {process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA?.slice(0, 7)}
+            {process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA?.slice(0, 7) ?? 'commit1'}
           </small>
         </Link>
       </div>
