@@ -4,7 +4,7 @@ import { getBalance } from '@/utils/getBalance'
 import { ActionType, TokenState } from '../../types'
 import { Dispatch, SetStateAction, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { slideInAnimation, slideOutAnimation } from '@/app/animations'
+import { slideInLeftAnimation, slideInRightAnimation } from '@/app/animations'
 
 const Input = ({
   state,
@@ -30,7 +30,7 @@ const Input = ({
           key={header + '-action'}
           className={inputHeader}
           style={{ textAlign: state.action === ActionType.WRAP ? 'start' : 'end' }}
-          {...(state.action === ActionType.WRAP ? slideInAnimation : slideOutAnimation)}
+          {...(state.action === ActionType.WRAP ? slideInLeftAnimation : slideInRightAnimation)}
         >
           {`You're ${header}`}
         </motion.small>

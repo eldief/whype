@@ -5,7 +5,7 @@ import { useToast } from '@/app/(layout)/Toaster/context/ToastContext'
 import { Dispatch, SetStateAction, useCallback } from 'react'
 import { DynamicConnectButton, useDynamicContext } from '@dynamic-labs/sdk-react-core'
 import { AnimatePresence, motion } from 'framer-motion'
-import { slideInAnimation, slideOutAnimation } from '@/app/animations'
+import { slideInLeftAnimation, slideInRightAnimation } from '@/app/animations'
 
 const Button = ({
   state,
@@ -55,7 +55,7 @@ const Button = ({
           <AnimatePresence mode='wait' initial={false}>
             <motion.span
               key={state.action}
-              {...(state.action === ActionType.WRAP ? slideInAnimation : slideOutAnimation)}
+              {...(state.action === ActionType.WRAP ? slideInLeftAnimation : slideInRightAnimation)}
             >
               {state.action}
             </motion.span>

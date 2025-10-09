@@ -40,14 +40,14 @@ export const balanceAnimation = {
   transition: { duration: 0.2 },
 }
 
-export const slideInAnimation = {
+export const slideInLeftAnimation = {
   initial: { x: -100, opacity: 0 },
   animate: { x: 0, opacity: 1 },
   exit: { x: -100, opacity: 0 },
   transition: { duration: 0.2 },
 }
 
-export const slideOutAnimation = {
+export const slideInRightAnimation = {
   initial: { x: 100, opacity: 0 },
   animate: { x: 0, opacity: 1 },
   exit: { x: 100, opacity: 0 },
