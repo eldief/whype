@@ -14,7 +14,7 @@ export const hyperliquid = defineChain({
   blockExplorers: {
     default: {
       name: 'HyperliquidExplorer',
-      url: 'https://app.hyperliquid.xyz/explorer/',
+      url: 'https://hyperevmscan.io/',
     },
   },
   testnet: false,
@@ -34,7 +34,7 @@ export const hyperliquidTestnet = defineChain({
   blockExplorers: {
     default: {
       name: 'HyperliquidExplorer',
-      url: 'https://app.hyperliquid-testnet.xyz/explorer/',
+      url: 'https://testnet.purrsec.com/',
     },
   },
   testnet: true,
