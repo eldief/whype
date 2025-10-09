@@ -14,6 +14,7 @@ import { unwrapToken } from '@/wagmi/unwrapToken'
 import { balanceRow, main } from './styles'
 import { useDynamicContext } from '@dynamic-labs/sdk-react-core'
 import { getChainInfoById } from '@/utils/toChainName'
+import { isAddress } from 'viem'
 
 const Root = () => {
   const { address } = useAccount()
@@ -28,6 +29,7 @@ const Root = () => {
       refetchOnReconnect: true,
       refetchOnMount: true,
       refetchOnWindowFocus: true,
+      enabled: !!address && isAddress(address),
     },
   })
 
@@ -39,6 +41,7 @@ const Root = () => {
       refetchOnReconnect: true,
       refetchOnMount: true,
       refetchOnWindowFocus: true,
+      enabled: !!address && isAddress(address),
     },
   })
 
