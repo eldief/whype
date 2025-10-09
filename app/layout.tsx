@@ -1,4 +1,4 @@
-import type { Viewport } from 'next'
+import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import { token } from '@/styled-system/tokens'
 import buildMetaData from '@/utils/buildMetaData'
@@ -34,7 +34,7 @@ export default function RootLayout({
   )
 }
 
-export const metadata = buildMetaData()
+export const metadata: Metadata = buildMetaData()
 export const viewport: Viewport = {
   themeColor: token('colors.primary.background'),
 }
