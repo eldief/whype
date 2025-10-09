@@ -3,7 +3,7 @@ import { WRAPPER_ABI } from '@/wagmi/abi'
 import { estimateFeesPerGas, waitForTransactionReceipt, writeContract } from 'wagmi/actions'
 import { parseUnits } from 'viem'
 import { ToastMessage } from '@/app/(layout)/Toaster/types'
-import { hasShortMessage } from './utils'
+import { manageError } from './utils'
 
 export const wrapToken = async (
   config: Config,
@@ -40,21 +40,6 @@ export const wrapToken = async (
       type: 'success',
     })
   } catch (err: unknown) {
-    if (hasShortMessage(err)) {
-      addToast({
-        message: err.shortMessage,
-        type: 'error',
-      })
-    } else if (err instanceof Error) {
-      addToast({
-        message: err.message,
-        type: 'error',
-      })
-    } else {
-      addToast({
-        message: 'Unexpected error.',
-        type: 'error',
-      })
-    }
+    manageError(err, addToast)
   }
 }
