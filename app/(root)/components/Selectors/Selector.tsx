@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from 'react'
 import { buttonWrapper, selector, selectorSelected, slider } from './styles'
 import { cx } from '@/styled-system/css'
 import { ActionType } from '../../types'
@@ -10,7 +9,7 @@ const Selectors = ({
   setAction,
 }: {
   action: ActionType
-  setAction: Dispatch<SetStateAction<ActionType>>
+  setAction: (action: ActionType) => void
 }) => {
   return (
     <section className={buttonWrapper}>

@@ -73,10 +73,11 @@ const Root = () => {
   const [amount, setAmount] = useState<number | undefined>(undefined)
   const [error, setError] = useState<string | undefined>(undefined)
 
-  useEffect(() => {
+  const handleActionChange = (action: ActionType) => {
     setAmount(undefined)
     setError(undefined)
-  }, [action, setAmount, setError])
+    setAction(action)
+  }
 
   const currentState = useMemo<TokenState>(
     () => ({
@@ -96,7 +97,7 @@ const Root = () => {
 
   return (
     <div className={main}>
-      <Selectors action={action} setAction={setAction} />
+      <Selectors action={action} setAction={handleActionChange} />
       <section className={balanceRow}>
         <Balance state={currentState} />
         <MaxButton state={currentState} setAmount={setAmount} />
