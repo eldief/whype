@@ -6,21 +6,24 @@ import Button from './components/Button/Button'
 import Input from './components/Input/Input'
 import MaxButton from './components/MaxButton/MaxButton'
 import Selectors from './components/Selectors/Selector'
-import { useEffect, useMemo, useState } from 'react'
-import { ActionType, TokenState } from './types'
-import { useAccount, useBalance, useChainId } from 'wagmi'
+import { useMemo, useState } from 'react'
+import { ActionType, BalanceResult, TokenState } from './types'
+import { useConnection, useBalance, useChainId, useReadContract } from 'wagmi'
 import { wrapToken } from '@/wagmi/wrapToken'
 import { unwrapToken } from '@/wagmi/unwrapToken'
 import { balanceRow, main } from './styles'
 import { useDynamicContext } from '@dynamic-labs/sdk-react-core'
 import { getChainInfoById } from '@/utils/toChainName'
 import { isAddress } from 'viem'
+import { WRAPPER_ABI } from '@/wagmi/abi'
 
 const Root = () => {
-  const { address } = useAccount()
+  const { address } = useConnection()
   const chainId = useChainId()
   const { network } = useDynamicContext()
   const { isSupported } = getChainInfoById(network)
+
+  const enabled = !!address && isAddress(address)
 
   const hype = useBalance({
     address,
@@ -29,21 +32,51 @@ const Root = () => {
       refetchOnReconnect: true,
       refetchOnMount: true,
       refetchOnWindowFocus: true,
-      enabled: !!address && isAddress(address),
+      enabled,
     },
   })
 
-  const whype = useBalance({
-    address,
-    token: WHYPE_ADDRESSES[chainId],
+  const whypeBalanceOf = useReadContract({
+    abi: WRAPPER_ABI,
+    address: WHYPE_ADDRESSES[chainId],
+    functionName: 'balanceOf',
+    args: [address!],
     query: {
       refetchInterval: 5000,
       refetchOnReconnect: true,
       refetchOnMount: true,
       refetchOnWindowFocus: true,
-      enabled: !!address && isAddress(address),
+      enabled,
     },
   })
+
+  const whypeDecimals = useReadContract({
+    abi: WRAPPER_ABI,
+    address: WHYPE_ADDRESSES[chainId],
+    functionName: 'decimals',
+    query: {
+      enabled,
+    },
+  })
+
+  const whype = useMemo<BalanceResult>(
+    () => ({
+      data:
+        whypeBalanceOf.data != null && whypeDecimals.data != null
+          ? { value: whypeBalanceOf.data as bigint, decimals: Number(whypeDecimals.data) }
+          : undefined,
+      isError: whypeBalanceOf.isError || whypeDecimals.isError,
+      isLoading: whypeBalanceOf.isLoading || whypeDecimals.isLoading,
+    }),
+    [
+      whypeBalanceOf.data,
+      whypeBalanceOf.isError,
+      whypeBalanceOf.isLoading,
+      whypeDecimals.data,
+      whypeDecimals.isError,
+      whypeDecimals.isLoading,
+    ],
+  )
 
   const balances = useMemo(
     () => ({

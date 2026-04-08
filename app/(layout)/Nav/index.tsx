@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useAccount } from 'wagmi'
+import { useConnection } from 'wagmi'
 
 import {
   chainButton,
@@ -29,7 +29,7 @@ const Nav = () => {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  const { isConnected, isConnecting } = useAccount()
+  const { isConnected, isConnecting } = useConnection()
   const { user, primaryWallet, setShowDynamicUserProfile, network } = useDynamicContext()
   const { isSupported, name } = getChainInfoById(network)
 

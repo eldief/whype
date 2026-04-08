@@ -5,12 +5,12 @@ import { formatUnits } from 'viem'
 import formatWithSeparator from '@/utils/formatWithSeparator'
 import Image from 'next/image'
 import { ActionType, TokenState } from '../../types'
-import { useAccount } from 'wagmi'
+import { useConnection } from 'wagmi'
 import { AnimatePresence, motion } from 'framer-motion'
 import { balanceAnimation } from '@/app/animations'
 
 const Balance = ({ state }: { state: TokenState }) => {
-  const { isConnected } = useAccount()
+  const { isConnected } = useConnection()
 
   const isWrap = state.action === ActionType.WRAP
   const label = isWrap ? 'HYPE' : 'WHYPE'

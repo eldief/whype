@@ -1,4 +1,4 @@
-import { Config, UseBalanceReturnType } from 'wagmi'
+import { Config } from 'wagmi'
 import { ToastMessage } from '../(layout)/Toaster/types'
 
 export const ActionType = {
@@ -7,6 +7,12 @@ export const ActionType = {
 } as const
 
 export type ActionType = (typeof ActionType)[keyof typeof ActionType]
+
+export interface BalanceResult {
+  data?: { value: bigint; decimals: number }
+  isError: boolean
+  isLoading: boolean
+}
 
 export interface TokenState {
   address?: `0x${string}`
@@ -17,12 +23,7 @@ export interface TokenState {
   amount?: number
   error?: string
   logoPath: string
-  balance: UseBalanceReturnType<{
-    decimals: number
-    formatted: string
-    symbol: string
-    value: bigint
-  }>
+  balance: BalanceResult
   onClick: (
     config: Config,
     wrapperAddress: `0x${string}`,

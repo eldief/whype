@@ -1,5 +1,5 @@
 import { button, buttonContainer, buttonWrapper } from './styles'
-import { useAccount, useConfig } from 'wagmi'
+import { useConnection, useConfig } from 'wagmi'
 import { TokenState, ActionType } from '../../types'
 import { useToast } from '@/app/(layout)/Toaster/context/ToastContext'
 import { Dispatch, SetStateAction, useCallback } from 'react'
@@ -15,7 +15,7 @@ const Button = ({
   setAmount: Dispatch<SetStateAction<number | undefined>>
 }) => {
   const config = useConfig()
-  const { isConnecting, isConnected } = useAccount()
+  const { isConnecting, isConnected } = useConnection()
   const { user } = useDynamicContext()
   const { addToast } = useToast()
 
