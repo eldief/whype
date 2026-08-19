@@ -6,6 +6,7 @@ import { Dispatch, SetStateAction, useCallback } from 'react'
 import { DynamicConnectButton, useDynamicContext } from '@dynamic-labs/sdk-react-core'
 import { AnimatePresence, motion } from 'framer-motion'
 import { slideInLeftAnimation, slideInRightAnimation } from '@/app/animations'
+import { useMounted } from '@/utils/useMounted'
 
 const Button = ({
   state,
@@ -15,6 +16,7 @@ const Button = ({
   setAmount: Dispatch<SetStateAction<number | undefined>>
 }) => {
   const config = useConfig()
+  const mounted = useMounted()
   const { isConnecting, isConnected } = useConnection()
   const { user } = useDynamicContext()
   const { addToast } = useToast()
@@ -34,19 +36,25 @@ const Button = ({
 
   return (
     <section className={buttonWrapper}>
-      {!isConnecting && !isConnected && !user && (
-        <DynamicConnectButton buttonContainerClassName={buttonContainer} buttonClassName={button}>
-          {'CONNECT'}
-        </DynamicConnectButton>
-      )}
-
-      {isConnecting && !isConnected && !user && (
+      {!mounted && (
         <button className={button} disabled={true}>
           {'CONNECTING'}
         </button>
       )}
 
-      {!isConnecting && isConnected && user && (
+      {mounted && !isConnecting && !isConnected && !user && (
+        <DynamicConnectButton buttonContainerClassName={buttonContainer} buttonClassName={button}>
+          {'CONNECT'}
+        </DynamicConnectButton>
+      )}
+
+      {mounted && isConnecting && !isConnected && !user && (
+        <button className={button} disabled={true}>
+          {'CONNECTING'}
+        </button>
+      )}
+
+      {mounted && !isConnecting && isConnected && user && (
         <button
           className={button}
           disabled={!state.amount || Boolean(state?.error) || !state.isSupportedNetwork}

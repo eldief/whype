@@ -16,6 +16,7 @@ import {
 import { css } from '@/styled-system/css'
 import { toShortAddress } from '@/utils/shortAddress'
 import { getChainInfoById } from '@/utils/toChainName'
+import { useMounted } from '@/utils/useMounted'
 import { useEffect, useState } from 'react'
 import { DynamicConnectButton, useDynamicContext } from '@dynamic-labs/sdk-react-core'
 
@@ -29,6 +30,7 @@ const Nav = () => {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
+  const mounted = useMounted()
   const { isConnected, isConnecting } = useConnection()
   const { user, primaryWallet, setShowDynamicUserProfile, network } = useDynamicContext()
   const { isSupported, name } = getChainInfoById(network)
@@ -47,15 +49,17 @@ const Nav = () => {
 
       <div className={css({ flexGrow: 1 })} />
 
-      {!isConnecting && !isConnected && !user && (
+      {!mounted && <span className={connectButton}>{'Connecting'}</span>}
+
+      {mounted && !isConnecting && !isConnected && !user && (
         <DynamicConnectButton buttonClassName={connectButton}>{'Connect'}</DynamicConnectButton>
       )}
 
-      {isConnecting && !isConnected && !user && (
+      {mounted && isConnecting && !isConnected && !user && (
         <span className={connectButton}>{'Connecting'}</span>
       )}
 
-      {!isConnecting && isConnected && user && (
+      {mounted && !isConnecting && isConnected && user && (
         <button className={chainButton} onClick={() => setShowDynamicUserProfile(true)}>
           {!isSupported && <small className={invalidChainName}>{'Unsupported chain'}</small>}
           {isSupported && <small className={chainName}>{name}</small>}
